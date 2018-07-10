@@ -4,6 +4,7 @@ import au.gov.dxa.goanna.ingestion.Filter
 import com.jayway.jsonpath.JsonPath
 import org.junit.Assert
 import org.junit.Test
+import org.springframework.context.annotation.FilterType
 
 class FilterTests {
 
@@ -56,7 +57,7 @@ class FilterTests {
                 "numExtents: 4,\n" +
                 "indexes: 1,\n" +
                 "indexSize: 8176,\n" +
-                "fileSize: 16777216,\n" +
+                "fileSize: 16777216.0,\n" +
                 "nsSizeMB: 1,\n" +
                 "extentFreeList: {\n" +
                 "num: 1,\n" +
@@ -71,22 +72,28 @@ class FilterTests {
 
 
 
-        val storageSize = Filter("storageSize", "$.storageSize", Filter.Type.int)
+        val storageSize = Filter("storageSize", "$.storageSize")
         val storageSizeResult = storageSize.observe(json)
         Assert.assertEquals("282624", storageSizeResult.value)
+        Assert.assertEquals("int", storageSizeResult.type)
 
+        val fileSize = Filter("fileSize", "$.fileSize")
+        val fileSizeResult = fileSize.observe(json)
+        Assert.assertEquals("16777216.00", fileSizeResult.value)
+        Assert.assertEquals("float", fileSizeResult.type)
 
-        val name = Filter("name", "$.db", Filter.Type.string)
+        val name = Filter("name", "$.db")
         val nameResult = name.observe(json)
         Assert.assertEquals("heroku_0g7226vr", nameResult.value)
+        Assert.assertEquals("string", nameResult.type)
 
 
-        val noReading = Filter("name", "$.noReading", Filter.Type.string)
+        val noReading = Filter("name", "$.noReading")
         val noReadingResult = noReading.observe(json)
         Assert.assertEquals("", noReadingResult.value)
 
 
-        val noReadingInt = Filter("name", "$.noReading", Filter.Type.int)
+        val noReadingInt = Filter("name", "$.noReading")
         val noReadingIntResult = noReadingInt.observe(json)
         Assert.assertEquals("", noReadingIntResult.value)
 

@@ -45,7 +45,7 @@ class Site(val name:String, val url:String, val vars:List<Filter>) {
 
         for(filter in vars) {
             if (json == null) {
-                val reading = Filter.Reading(filter.name, "", filter.type.toString())
+                val reading = Filter.Reading(filter.name, "", "string")
                 reading.name = "$name.${reading.name}"
                 readings.add(reading)
             } else {

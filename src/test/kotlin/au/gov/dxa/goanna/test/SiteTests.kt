@@ -11,14 +11,14 @@ class SiteTests {
     @Test
     fun can_configure_site(){
 
-        val filters = listOf<Filter>(Filter("storageSize", "$.storageSize", Filter.Type.float), Filter("dbName","$.db",Filter.Type.string))
+        val filters = listOf<Filter>(Filter("storageSize", "$.storageSize"), Filter("dbName","$.db"))
         val site = Site("serviceCatalogueRepository", "test1", filters)
 
         val readings = site.read()
         Assert.assertEquals(2, readings.size)
 
         Assert.assertEquals("serviceCatalogueRepository.storageSize", readings[0].name)
-        Assert.assertEquals("282624.0", readings[0].value)
+        Assert.assertEquals("282624.00", readings[0].value)
         Assert.assertEquals("float", readings[0].type)
 
         Assert.assertEquals("serviceCatalogueRepository.dbName", readings[1].name)
@@ -55,7 +55,7 @@ class SiteTests {
         Assert.assertEquals(2, readings.size)
 
         Assert.assertEquals("serviceCatalogueRepository.storageSize", readings[0].name)
-        Assert.assertEquals("282624.0", readings[0].value)
+        Assert.assertEquals("282624.00", readings[0].value)
         Assert.assertEquals("float", readings[0].type)
 
         Assert.assertEquals("serviceCatalogueRepository.dbName", readings[1].name)
