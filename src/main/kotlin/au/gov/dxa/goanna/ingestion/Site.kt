@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory
 import java.net.URL
 
 class Site(val name:String, val url:String, val vars:List<Filter>) {
-
-
     private val logger = LoggerFactory.getLogger(Application::class.java)
     private val test1 = "{\n" +
             "db: \"heroku_0g7226vr\",\n" +
@@ -34,23 +32,30 @@ class Site(val name:String, val url:String, val vars:List<Filter>) {
 
     fun read():List<Filter.Reading>{
 
+        var authKey: String = System.getenv("authKey") ?: ""
+        val theUrl = if (url.contains("&")) "$url&authKey=$authKey" else "$url?authKey=$authKey"
+
         var json = ""
         if(url == "test1") json = test1
         if(json == ""){
             logger.info("Reading json from: $url")
-            json = URL(url).readText()
+            try {
+                json = URL(theUrl).readText()
+            }catch(e:Exception){
+                logger.info("Couldn't read from: $url. Recording empty observations")
+            }
         }
 
         val readings = mutableListOf<Filter.Reading>()
 
         for(filter in vars) {
-            if (json == null) {
+            if (json == "") {
                 val reading = Filter.Reading(filter.name, "", "string")
-                reading.name = "$name.${reading.name}"
+                reading.name = "${name}_${reading.name}"
                 readings.add(reading)
             } else {
-                val reading = filter.observe(json!!)
-                reading.name = "$name.${reading.name}"
+                val reading = filter.observe(json)
+                reading.name = "${name}_${reading.name}"
                 readings.add(reading)
             }
 

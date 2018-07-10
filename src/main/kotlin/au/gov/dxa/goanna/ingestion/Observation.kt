@@ -1,22 +1,23 @@
 package au.gov.dxa.goanna.ingestion
 
-import com.beust.klaxon.Json
 import java.time.LocalDateTime
 
-data class Config(val sites:List<Site>)
-class Observation(@Json(ignored = true) val config:Config) {
 
-    val values = mutableMapOf<String,Any>()
-    val time = LocalDateTime.now().toString()
+class Observation{
 
-    init{
-        for(site in config.sites){
-            for(reading in site.read()){
-                if(reading.type == "string") values.put(reading.name, reading.value )
-                if(reading.type == "int") values.put(reading.name, reading.value.toInt() )
-                if(reading.type == "float") values.put(reading.name, reading.value.toDouble() )
+
+    var values = mutableMapOf<String,Any>()
+    var time :String = ""
+
+    fun observe(config:Config){
+        if(time == "") time = LocalDateTime.now().toString()
+        for(siteDTO in config.sites){
+            val site = Site(siteDTO.name, siteDTO.url, siteDTO.vars.map{ it-> Filter(it.name, it.path)})
+            for(reading in site.read()) {
+                if (reading.type == "string") values[reading.name] =  reading.value
+                if (reading.type == "int") values[reading.name] = reading.value.toInt()
+                if (reading.type == "float") values[reading.name] = reading.value.toDouble()
             }
         }
     }
-
 }

@@ -17,12 +17,31 @@ class SiteTests {
         val readings = site.read()
         Assert.assertEquals(2, readings.size)
 
-        Assert.assertEquals("serviceCatalogueRepository.storageSize", readings[0].name)
+        Assert.assertEquals("serviceCatalogueRepository_storageSize", readings[0].name)
         Assert.assertEquals("282624.00", readings[0].value)
         Assert.assertEquals("float", readings[0].type)
 
-        Assert.assertEquals("serviceCatalogueRepository.dbName", readings[1].name)
+        Assert.assertEquals("serviceCatalogueRepository_dbName", readings[1].name)
         Assert.assertEquals("heroku_0g7226vr", readings[1].value)
+        Assert.assertEquals("string", readings[1].type)
+
+    }
+
+    @Test
+    fun will_get_empty_readings_if_site_fails(){
+
+        val filters = listOf<Filter>(Filter("storageSize", "$.storageSize"), Filter("dbName","$.db"))
+        val site = Site("serviceCatalogueRepository", "http://test12", filters)
+
+        val readings = site.read()
+        Assert.assertEquals(2, readings.size)
+
+        Assert.assertEquals("serviceCatalogueRepository_storageSize", readings[0].name)
+        Assert.assertEquals("", readings[0].value)
+        Assert.assertEquals("string", readings[0].type)
+
+        Assert.assertEquals("serviceCatalogueRepository_dbName", readings[1].name)
+        Assert.assertEquals("", readings[1].value)
         Assert.assertEquals("string", readings[1].type)
 
     }
@@ -49,16 +68,16 @@ class SiteTests {
         val site = Klaxon().parse<Site>(siteConf)!!
 
         Assert.assertEquals("serviceCatalogueRepository", site.name)
-        Assert.assertEquals( 2, site.vars.size)
+        Assert.assertEquals( 2, site.vars!!.size)
 
         val readings = site.read()
         Assert.assertEquals(2, readings.size)
 
-        Assert.assertEquals("serviceCatalogueRepository.storageSize", readings[0].name)
+        Assert.assertEquals("serviceCatalogueRepository_storageSize", readings[0].name)
         Assert.assertEquals("282624.00", readings[0].value)
         Assert.assertEquals("float", readings[0].type)
 
-        Assert.assertEquals("serviceCatalogueRepository.dbName", readings[1].name)
+        Assert.assertEquals("serviceCatalogueRepository_dbName", readings[1].name)
         Assert.assertEquals("heroku_0g7226vr", readings[1].value)
         Assert.assertEquals("string", readings[1].type)
 

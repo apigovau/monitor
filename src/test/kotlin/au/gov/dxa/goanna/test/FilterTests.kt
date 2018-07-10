@@ -38,7 +38,7 @@ class FilterTests {
 
         val query = "$.storageSize"
 
-        val storageSize = JsonPath.read<Integer>(json, query)
+        val storageSize = JsonPath.read<Int>(json, query)
         Assert.assertEquals(282624, storageSize)
     }
 

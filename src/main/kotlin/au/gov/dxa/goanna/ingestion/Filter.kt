@@ -5,8 +5,9 @@ import javafx.application.Application
 import org.slf4j.LoggerFactory
 
 
-class Filter(val name:String, val path:String) {
+class Filter(var name:String, var path:String) {
 
+    @Transient
     private val logger = LoggerFactory.getLogger(Application::class.java)
 
     data class Reading(var name:String, val value:String, val type:String)
