@@ -1,7 +1,7 @@
 package au.gov.dxa.monitor.ingestion
 
+import au.gov.dxa.monitor.Application
 import com.jayway.jsonpath.JsonPath
-import javafx.application.Application
 import org.slf4j.LoggerFactory
 
 

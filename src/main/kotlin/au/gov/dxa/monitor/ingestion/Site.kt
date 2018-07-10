@@ -1,6 +1,6 @@
 package au.gov.dxa.monitor.ingestion
 
-import javafx.application.Application
+import au.gov.dxa.monitor.Application
 import org.slf4j.LoggerFactory
 import java.net.URL
 
