@@ -1,7 +1,7 @@
-package au.gov.dxa.goanna.test
+package au.gov.dxa.monitor.test
 
-import au.gov.dxa.goanna.ingestion.Config
-import au.gov.dxa.goanna.ingestion.Observation
+import au.gov.dxa.monitor.ingestion.Config
+import au.gov.dxa.monitor.ingestion.Observation
 import com.beust.klaxon.Klaxon
 import org.junit.Assert
 import org.junit.Test

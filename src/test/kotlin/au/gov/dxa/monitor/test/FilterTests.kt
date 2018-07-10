@@ -1,10 +1,9 @@
-package au.gov.dxa.goanna.test
+package au.gov.dxa.monitor.test
 
-import au.gov.dxa.goanna.ingestion.Filter
+import au.gov.dxa.monitor.ingestion.Filter
 import com.jayway.jsonpath.JsonPath
 import org.junit.Assert
 import org.junit.Test
-import org.springframework.context.annotation.FilterType
 
 class FilterTests {
 

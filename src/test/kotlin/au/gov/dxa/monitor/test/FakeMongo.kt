@@ -1,4 +1,4 @@
-package au.gov.dxa.goanna.test
+package au.gov.dxa.monitor.test
 
 // https://gluecoders.github.io/springboot-guide-docs/testing-mongodb-springdata.html
 

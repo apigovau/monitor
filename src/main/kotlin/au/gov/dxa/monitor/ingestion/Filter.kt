@@ -1,4 +1,4 @@
-package au.gov.dxa.goanna.ingestion
+package au.gov.dxa.monitor.ingestion
 
 import com.jayway.jsonpath.JsonPath
 import javafx.application.Application

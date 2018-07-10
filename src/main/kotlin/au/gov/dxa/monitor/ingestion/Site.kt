@@ -1,4 +1,4 @@
-package au.gov.dxa.goanna.ingestion
+package au.gov.dxa.monitor.ingestion
 
 import javafx.application.Application
 import org.slf4j.LoggerFactory

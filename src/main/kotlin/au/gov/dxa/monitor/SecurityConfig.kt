@@ -1,4 +1,4 @@
-package au.gov.dxa.goanna
+package au.gov.dxa.monitor
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
