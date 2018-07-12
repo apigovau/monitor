@@ -22,18 +22,5 @@ class APIController {
         observation.observe(config)
         return observation
     }
-
-    @CrossOrigin
-    @GetMapping("/lambda")
-    fun lambda():LambdaResults{
-        val config = repository.findAll().first()
-        val observation = Observation()
-        observation.observe(config)
-
-        var lf = LambdaRunner(observation)
-        var results = lf.evalLambdas(config)
-        return results
-    }
-
 }
 

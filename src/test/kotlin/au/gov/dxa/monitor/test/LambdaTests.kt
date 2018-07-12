@@ -16,14 +16,14 @@ class LambdaTests {
     fun can_build_global_vars_from_observation_results() {
 
         var observation = Observation()
-        observation.values["serviceCatalogueRepository_storageSize"] = 282624.0
-        observation.values["serviceCatalogueRepository_dbName"] = "heroku_0g7226vr"
+        observation.monitoringValues["serviceCatalogueRepository_storageSize"] = 282624.0
+        observation.monitoringValues["serviceCatalogueRepository_dbName"] = "heroku_0g7226vr"
 
 
-        Assert.assertTrue(observation.values.containsKey("serviceCatalogueRepository_storageSize"))
-        Assert.assertEquals(282624.0, observation.values["serviceCatalogueRepository_storageSize"])
-        Assert.assertTrue(observation.values.containsKey("serviceCatalogueRepository_dbName"))
-        Assert.assertEquals("heroku_0g7226vr", observation.values["serviceCatalogueRepository_dbName"])
+        Assert.assertTrue(observation.monitoringValues.containsKey("serviceCatalogueRepository_storageSize"))
+        Assert.assertEquals(282624.0, observation.monitoringValues["serviceCatalogueRepository_storageSize"])
+        Assert.assertTrue(observation.monitoringValues.containsKey("serviceCatalogueRepository_dbName"))
+        Assert.assertEquals("heroku_0g7226vr", observation.monitoringValues["serviceCatalogueRepository_dbName"])
 
 
         var expected = """var serviceCatalogueRepository_storageSize = 282624.0;
@@ -38,8 +38,8 @@ var serviceCatalogueRepository_dbName = "heroku_0g7226vr";
     fun can_execute_lambda_and_return_value(){
 
         var observation = Observation()
-        observation.values["serviceCatalogueRepository_storageSize"] = 512753664 / 2
-        observation.values["serviceCatalogueRepository_dbName"] = "heroku_0g7226vr"
+        observation.monitoringValues["serviceCatalogueRepository_storageSize"] = 512753664 / 2
+        observation.monitoringValues["serviceCatalogueRepository_dbName"] = "heroku_0g7226vr"
 
 
         var lf = LambdaRunner(observation)
@@ -91,15 +91,12 @@ var serviceCatalogueRepository_dbName = "heroku_0g7226vr";
         Assert.assertEquals(config.lambdas[0].lambda, "serviceCatalogueRepository_storageSize / 512753664 * 100")
         val observation = Observation()
         observation.observe(config)
-
-
-        var lf = LambdaRunner(observation)
-        var calcs = lf.evalLambdas(config)
-        Assert.assertEquals(2, calcs.results.size)
-        Assert.assertEquals(calcs.results[0].name, "serviceCatalogueRepositoryStoragePercent")
-        Assert.assertEquals(calcs.results[0].result,  0.05511886503067484)
-        Assert.assertEquals(calcs.results[1].name, "serviceCatalogueRepositoryDbNameCaps")
-        Assert.assertEquals(calcs.results[1].result,  "heroku_0g7226vr".toUpperCase())
+        val calcs = observation.calculatedVariables
+        Assert.assertEquals(2, calcs.size)
+        Assert.assertTrue(calcs.containsKey("serviceCatalogueRepositoryStoragePercent"))
+        Assert.assertEquals(calcs["serviceCatalogueRepositoryStoragePercent"],  0.05511886503067484)
+        Assert.assertTrue(calcs.containsKey("serviceCatalogueRepositoryDbNameCaps"))
+        Assert.assertEquals(calcs["serviceCatalogueRepositoryDbNameCaps"], "heroku_0g7226vr".toUpperCase())
 
 
     }

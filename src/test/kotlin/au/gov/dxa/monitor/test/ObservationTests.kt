@@ -34,11 +34,11 @@ class ObservationTests {
         val config = Klaxon().parse<Config>(configJson)!!
         val observation = Observation()
         observation.observe(config)
-        Assert.assertEquals(2, observation.values.size)
-        Assert.assertTrue( observation.values.containsKey("serviceCatalogueRepository_storageSize"))
-        Assert.assertEquals(282624.0, observation.values["serviceCatalogueRepository_storageSize"])
-        Assert.assertTrue(observation.values.containsKey("serviceCatalogueRepository_dbName"))
-        Assert.assertEquals("heroku_0g7226vr", observation.values["serviceCatalogueRepository_dbName"])
+        Assert.assertEquals(2, observation.monitoringValues.size)
+        Assert.assertTrue( observation.monitoringValues.containsKey("serviceCatalogueRepository_storageSize"))
+        Assert.assertEquals(282624.0, observation.monitoringValues["serviceCatalogueRepository_storageSize"])
+        Assert.assertTrue(observation.monitoringValues.containsKey("serviceCatalogueRepository_dbName"))
+        Assert.assertEquals("heroku_0g7226vr", observation.monitoringValues["serviceCatalogueRepository_dbName"])
 
 
     }
@@ -84,11 +84,11 @@ class ObservationTests {
         val config = Klaxon().parse<Config>(configJson)!!
         val observation = Observation()
         observation.observe(config)
-        Assert.assertEquals(4, observation.values.size)
-        Assert.assertTrue( observation.values.containsKey("serviceCatalogueRepository_storageSize"))
-        Assert.assertEquals(282624.0, observation.values["serviceCatalogueRepository_storageSize"])
-        Assert.assertTrue(observation.values.containsKey("serviceCatalogueRepository_dbName"))
-        Assert.assertEquals("heroku_0g7226vr", observation.values["serviceCatalogueRepository_dbName"])
+        Assert.assertEquals(4, observation.monitoringValues.size)
+        Assert.assertTrue( observation.monitoringValues.containsKey("serviceCatalogueRepository_storageSize"))
+        Assert.assertEquals(282624.0, observation.monitoringValues["serviceCatalogueRepository_storageSize"])
+        Assert.assertTrue(observation.monitoringValues.containsKey("serviceCatalogueRepository_dbName"))
+        Assert.assertEquals("heroku_0g7226vr", observation.monitoringValues["serviceCatalogueRepository_dbName"])
 
         //println(Klaxon().toJsonString(observation))
 
