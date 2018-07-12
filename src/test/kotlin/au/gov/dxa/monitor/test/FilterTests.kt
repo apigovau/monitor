@@ -4,6 +4,10 @@ import au.gov.dxa.monitor.ingestion.Filter
 import com.jayway.jsonpath.JsonPath
 import org.junit.Assert
 import org.junit.Test
+import javax.script.ScriptEngineManager
+import javax.script.ScriptEngine
+
+
 
 class FilterTests {
 
