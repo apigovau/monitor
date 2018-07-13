@@ -11,7 +11,7 @@ class SiteTests {
     @Test
     fun can_configure_site(){
 
-        val filters = listOf<Filter>(Filter("storageSize", "$.storageSize"), Filter("dbName","$.db"))
+        val filters = listOf<Filter>(Filter("storageSize", "$.storageSize"), Filter("dbName", "$.db"))
         val site = Site("serviceCatalogueRepository", "test1", filters)
 
         val readings = site.read()
@@ -30,7 +30,7 @@ class SiteTests {
     @Test
     fun will_get_empty_readings_if_site_fails(){
 
-        val filters = listOf<Filter>(Filter("storageSize", "$.storageSize"), Filter("dbName","$.db"))
+        val filters = listOf<Filter>(Filter("storageSize", "$.storageSize"), Filter("dbName", "$.db"))
         val site = Site("serviceCatalogueRepository", "http://test12", filters)
 
         val readings = site.read()

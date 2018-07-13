@@ -1,19 +1,22 @@
 package au.gov.dxa.monitor.ingestion
 
+import au.gov.dxa.monitor.Config
 import au.gov.dxa.monitor.emit.LambdaRunner
 import java.time.LocalDateTime
 
 
 class Observation{
 
-    var calculatedVariables = mapOf<String,Any>()
+
+
+    var calculatedVariables = mutableMapOf<String,Any>()
     var monitoringValues = mutableMapOf<String,Any>()
     var time :String = ""
 
-    fun observe(config:Config){
-        if(time == "") time = LocalDateTime.now().toString()
+    fun observe(config: Config){
+        setTime()
         for(siteDTO in config.sites){
-            val site = Site(siteDTO.name, siteDTO.url, siteDTO.vars.map{ it-> Filter(it.name, it.path)})
+            val site = Site(siteDTO.name, siteDTO.url, siteDTO.vars.map{ it-> Filter(it.name, it.path) })
             for(reading in site.read()) {
                 if (reading.type == "string") monitoringValues[reading.name] =  reading.value
                 if (reading.type == "int") monitoringValues[reading.name] = reading.value.toInt()
@@ -23,6 +26,10 @@ class Observation{
 
         val lambdaRunner = LambdaRunner(this)
         calculatedVariables = lambdaRunner.evalLambdas(config)
+    }
+
+    fun setTime() {
+        if (time == "") time = LocalDateTime.now().toString()
     }
 
 }

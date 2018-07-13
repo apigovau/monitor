@@ -29,7 +29,7 @@ class APIController {
     @CrossOrigin
     @GetMapping("/observations")
     fun observations():List<Observation>{
-        return observationRepository.findAll(Sort(Sort.Direction.DESC, "time"))
+        return observationRepository.findAll(Sort(Sort.Direction.ASC, "time"))
     }
 }
 

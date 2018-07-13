@@ -2,7 +2,8 @@ package au.gov.dxa.monitor.test
 
 import au.gov.dxa.monitor.Application
 import au.gov.dxa.monitor.ObservationRepository
-import au.gov.dxa.monitor.ingestion.Config
+import au.gov.dxa.monitor.Config
+import au.gov.dxa.monitor.emit.MetricConverter
 import au.gov.dxa.monitor.ingestion.Observation
 import com.beust.klaxon.Klaxon
 import org.junit.Assert
@@ -11,6 +12,7 @@ import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
+import org.springframework.data.domain.Sort
 import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
@@ -124,6 +126,5 @@ class ObservationRepositoryTest {
 
 
     }
-
 
 }

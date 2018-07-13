@@ -1,7 +1,7 @@
 package au.gov.dxa.monitor.test
 
 import au.gov.dxa.monitor.emit.LambdaRunner
-import au.gov.dxa.monitor.ingestion.Config
+import au.gov.dxa.monitor.Config
 import au.gov.dxa.monitor.ingestion.Observation
 import com.beust.klaxon.Klaxon
 import org.junit.Assert

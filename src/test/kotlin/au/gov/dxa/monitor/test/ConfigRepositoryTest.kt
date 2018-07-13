@@ -2,7 +2,7 @@ package au.gov.dxa.monitor.test
 
 import au.gov.dxa.monitor.Application
 import au.gov.dxa.monitor.ConfigRepository
-import au.gov.dxa.monitor.ingestion.Config
+import au.gov.dxa.monitor.Config
 import com.beust.klaxon.Klaxon
 import org.junit.Assert
 import org.junit.Test

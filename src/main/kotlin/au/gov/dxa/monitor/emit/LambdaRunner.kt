@@ -1,6 +1,6 @@
 package au.gov.dxa.monitor.emit
 
-import au.gov.dxa.monitor.ingestion.Config
+import au.gov.dxa.monitor.Config
 import au.gov.dxa.monitor.ingestion.Observation
 import javax.script.ScriptEngineManager
 
@@ -22,7 +22,7 @@ class LambdaRunner(var observation:Observation) {
         return engine.eval(globalVars + "\n" + lambda + ";")
     }
 
-    fun evalLambdas(config: Config):Map<String, Any>{
+    fun evalLambdas(config: Config):MutableMap<String, Any>{
         val map = mutableMapOf<String, Any>()
         for(lambda in config.lambdas) {
             map[lambda.name] =  eval(lambda.lambda)
