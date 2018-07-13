@@ -23,9 +23,9 @@
 .bar_chart dl.chart {
     border-right: 1px solid #555;
     border-left: 1px solid #555;
-    width: calc(85% - 205px);
+    width: calc(85% - 100px);
     position: relative;
-    left: 200px;
+    left: 100px;
     display: inline-block;
 }
 
@@ -52,15 +52,16 @@
 }
 
 .bar_chart h3 {
-    position: relative;
-    left: 200px;
-    margin-bottom: -11px !important;
+    /*position: relative;*/
+    /*left: 200px;*/
+    text-align: center;
+    margin-bottom: 0px !important;
 }
 
 .bar_chart .sparklines {
     width: 15%;
     position: relative;
-    left: 200px;
+    left: 95px;
     display: inline-block;
     vertical-align: top;
 }

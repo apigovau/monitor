@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component
 class MetricConverter {
 
 
-    //val fetched = repository.findAll(Sort(Sort.Direction.ASC, "time")).takeLast(quantity)
     fun convert(fetched:List<Observation>, quantity:Int):Map<String, List<Any?>>{
         val metrics = mutableMapOf<String,MutableList<Any?>>()
 
