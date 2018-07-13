@@ -1,0 +1,91 @@
+.service_catalogue_repository {
+    background-color: teal !important;
+}
+
+.definition_catalogue {
+    background-color: #004880 !important;
+}
+
+.metric_container {
+    display: grid;
+    grid-template-columns: repeat(12, [col] 1fr);
+    grid-template-rows: repeat(5, [row] auto);
+    grid-column-gap: 0.1em;
+    grid-row-gap: 0.1em;
+}
+
+.bar_chart {
+    background-color: #222222;
+    padding: 5px;
+    margin: 5px;
+}
+
+.bar_chart dl.chart {
+    border-right: 1px solid #555;
+    border-left: 1px solid #555;
+    width: calc(85% - 205px);
+    position: relative;
+    left: 200px;
+    display: inline-block;
+}
+
+.bar_chart .label {
+    font-size: 10px;
+    display: flex;
+    width: 400px;
+    font-weight: 600;
+    line-height: 13px;
+    position: absolute;
+    left: -418px;
+    justify-content: flex-end;
+    margin-left: 10px;
+}
+
+.bar_chart .value {
+    font-size: 0.8em;
+    line-height: 1;
+    height: 13px;
+    background-color: #3D9970;
+    margin-bottom: 2px;
+    position: relative;
+    margin-left: 0px;
+}
+
+.bar_chart h3 {
+    position: relative;
+    left: 200px;
+    margin-bottom: -11px !important;
+}
+
+.bar_chart .sparklines {
+    width: 15%;
+    position: relative;
+    left: 200px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.bar_chart .sparkline {
+    font-size: 0.8em;
+    height: 13px;
+    margin-bottom: 2px;
+    margin-left: 0px;
+    border-bottom: 1px solid #333;
+    box-sizing: border-box;
+}
+
+.bar_chart .spark {
+    width: 5%;
+    background: #555;
+    /*box-sizing: border-box;*/
+    /*border-right: 1px solid #222222;*/
+    display: inline-block;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+body {
+    font-family: "fira-sans-2", sans-serif;
+    background-color: #333333;
+    color: #BBB;
+}
