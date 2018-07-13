@@ -20,8 +20,8 @@ class APIController {
 
     @Autowired lateinit var monitor: MongoMonitor
 
-    @Scheduled(fixedRate = 300000)
-    @GetMapping("/observe")
+    // 3600000000 = 1 hour
+    @Scheduled(fixedRate = 3600000000)
     fun observe(){
         val config = configRepository.findAll().firstOrNull()
         if(config == null) return
@@ -71,7 +71,7 @@ class APIController {
 
         val config = configRepository.findAll().first()
         val observations = observationRepository.findAll(Sort(Sort.Direction.ASC, "time")).takeLast(20)
-        val metrics = MetricConverter().convert(observations,20)
+        val metrics = MetricConverter().convert(observations,100)
         val bcc = BarChartCreator()
 
 
