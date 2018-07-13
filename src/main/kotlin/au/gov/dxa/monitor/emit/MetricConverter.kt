@@ -22,7 +22,6 @@ class MetricConverter {
             }
         }
 
-
         for(metric in metrics){
             val gap = quantity - metric.value.size
             if(gap == 0) continue

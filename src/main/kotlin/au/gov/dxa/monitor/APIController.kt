@@ -38,13 +38,6 @@ class APIController {
         return monitor.get_mongo_stats()
     }
 
-    //@CrossOrigin
-    //@GetMapping("/observations")
-    private fun observations():List<Observation>{
-        return observationRepository.findAll(Sort(Sort.Direction.ASC, "time"))
-    }
-
-
     @ResponseStatus(HttpStatus.FORBIDDEN)
     class UnauthorisedToAccessMonitoring() : RuntimeException()
 
