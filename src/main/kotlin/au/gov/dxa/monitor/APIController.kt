@@ -21,6 +21,7 @@ class APIController {
     @Autowired lateinit var monitor: MongoMonitor
 
     @Scheduled(fixedRate = 300000)
+    @GetMapping("/observe")
     fun observe(){
         val config = configRepository.findAll().firstOrNull()
         if(config == null) return

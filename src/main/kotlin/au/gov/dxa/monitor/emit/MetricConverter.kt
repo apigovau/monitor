@@ -1,10 +1,6 @@
 package au.gov.dxa.monitor.emit
 
-import au.gov.dxa.monitor.ObservationRepository
 import au.gov.dxa.monitor.ingestion.Observation
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Sort
-import org.springframework.stereotype.Component
 
 class MetricConverter {
 
