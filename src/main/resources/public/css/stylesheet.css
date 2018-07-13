@@ -23,7 +23,7 @@
 .bar_chart dl.chart {
     border-right: 1px solid #555;
     border-left: 1px solid #555;
-    width: calc(85% - 100px);
+    width: calc(65% - 100px);
     position: relative;
     left: 100px;
     display: inline-block;
@@ -59,9 +59,9 @@
 }
 
 .bar_chart .sparklines {
-    width: 15%;
+    width: 33%;
     position: relative;
-    left: 95px;
+    left: 100px;
     display: inline-block;
     vertical-align: top;
 }
