@@ -56,6 +56,20 @@ class BarChartTests {
             "        \"bar_chart\":[\n" +
             "          {\n" +
             "            \"label\":\"Service Catalogue Repository MongoDB\",\n" +
+            "            \"style\":\"percent\",\n" +
+            "            \"variable\":\"serviceCatalogueRepositoryMongoDB\",\n" +
+            "            \"collection\":\"service_catalogue_repository\"\n" +
+            "          }\n" +
+            "          ]\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"title\":\"Values\",\n" +
+            "        \"col\":1,\n" +
+            "        \"span\":6,\n" +
+            "        \"bar_chart\":[\n" +
+            "          {\n" +
+            "            \"label\":\"Service Catalogue Repository MongoDB\",\n" +
+            "            \"style\":\"value\",\n" +
             "            \"variable\":\"serviceCatalogueRepositoryMongoDB\",\n" +
             "            \"collection\":\"service_catalogue_repository\"\n" +
             "          }\n" +
@@ -71,7 +85,7 @@ class BarChartTests {
         //println(configJson)
 
         val config = Klaxon().parse<Config>(configJson)!!
-        Assert.assertEquals(1, config.widgets.size)
+        Assert.assertEquals(2, config.widgets.size)
         Assert.assertEquals("Storage", config.widgets[0].title)
         Assert.assertNotNull(config.widgets[0].bar_chart)
         Assert.assertEquals("Service Catalogue Repository MongoDB", config.widgets[0].bar_chart!![0].label)
@@ -95,14 +109,43 @@ class BarChartTests {
 
 
         val expected =
-"""
+                """
   <div class="bar_chart item" style="grid-column: 1/ span 6;">
     <h3>Storage</h3>
     <dl class="chart">
-      <dd class="value service_catalogue_repository" style="width:100%;"><span class="label">Service Catalogue Repository MongoDB</span></dd>
+      <dd class="percentage service_catalogue_repository" style="width:100%;"><span class="label">Service Catalogue Repository MongoDB</span></dd>
     </dl>
     <dl class="sparklines">
       <dd class="sparkline"><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:10%"></div><div class="spark" style="height:20%"></div><div class="spark" style="height:30%"></div><div class="spark" style="height:40%"></div><div class="spark" style="height:50%"></div><div class="spark" style="height:60%"></div><div class="spark" style="height:70%"></div><div class="spark" style="height:80%"></div><div class="spark" style="height:90%"></div><div class="spark" style="height:100%"></div></dd>
+    </dl>
+  </div>
+"""
+
+
+        Assert.assertEquals(expected, bc)
+    }
+
+
+
+    @Test
+    fun can_generate_bar_chart_main_values(){
+        val config = Klaxon().parse<Config>(configJson)!!
+        val metrics = mutableMapOf<String,List<Any?>>()
+        metrics["serviceCatalogueRepositoryMongoDB"] = listOf(null, null, null, null, null, null, null, null, null, 0,100,200,300,400,500,600,700,800,900,1000)
+
+        val bcc = BarChartCreator()
+        val bc = bcc.create(config.widgets[1], metrics)
+
+
+        val expected =
+                """
+  <div class="bar_chart item" style="grid-column: 1/ span 6;">
+    <h3>Values</h3>
+    <dl class="chart">
+      <dd class="value service_catalogue_repository"><span class="text">1,000</span><span class="label">Service Catalogue Repository MongoDB</span></dd>
+    </dl>
+    <dl class="sparklines">
+      <dd class="sparkline"><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0.0%"></div><div class="spark" style="height:10.0%"></div><div class="spark" style="height:20.0%"></div><div class="spark" style="height:30.0%"></div><div class="spark" style="height:40.0%"></div><div class="spark" style="height:50.0%"></div><div class="spark" style="height:60.0%"></div><div class="spark" style="height:70.0%"></div><div class="spark" style="height:80.0%"></div><div class="spark" style="height:90.0%"></div><div class="spark" style="height:100.0%"></div></dd>
     </dl>
   </div>
 """

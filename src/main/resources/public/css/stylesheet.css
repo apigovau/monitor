@@ -41,7 +41,12 @@
     margin-left: 10px;
 }
 
-.bar_chart .value {
+.bar_chart .value .label {
+    position: relative;
+    top: -11px;
+}
+
+.bar_chart .percentage {
     font-size: 0.8em;
     line-height: 1;
     height: 13px;
@@ -49,6 +54,24 @@
     margin-bottom: 2px;
     position: relative;
     margin-left: 0px;
+}
+
+.bar_chart .value {
+    font-size: 0.8em;
+    line-height: 1;
+    height: 13px;
+    background: #222 !important;
+    margin-bottom: 2px;
+    position: relative;
+    margin-left: 0px;
+    width: 1px;
+}
+
+.bar_chart .value .text {
+    margin-left: 15px;
+    position: relative;
+    top: 1px;
+    font-weight: bold;
 }
 
 .bar_chart h3 {
