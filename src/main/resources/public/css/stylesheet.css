@@ -15,9 +15,9 @@
 .bar_chart dl.chart {
     border-right: 1px solid #555;
     border-left: 1px solid #555;
-    width: calc(65% - 100px);
+    width: calc(40% - 100px);
     position: relative;
-    left: 100px;
+    left: 180px;
     display: inline-block;
 }
 
@@ -72,12 +72,13 @@
     /*left: 200px;*/
     text-align: center;
     margin-bottom: 0px !important;
+    width: 100%;
 }
 
 .bar_chart .sparklines {
-    width: 33%;
+    width: calc(60% - 100px);
     position: relative;
-    left: 100px;
+    left: 180px;
     display: inline-block;
     vertical-align: top;
 }
@@ -87,15 +88,15 @@
     height: 13px;
     margin-bottom: 2px;
     margin-left: 0px;
-    border-bottom: 1px solid #333;
+    /*border-bottom: 1px solid #333;*/
     box-sizing: border-box;
 }
 
 .bar_chart .spark {
     width: 1%;
-    background: #606060;
+    background: #818181;
     box-sizing: border-box;
-    border-top: 1px solid #D03108;
+    border-top: 1px solid #DDD;
     display: inline-block;
     margin: 0px !important;
     padding: 0px !important;
