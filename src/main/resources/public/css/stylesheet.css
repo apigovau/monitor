@@ -88,8 +88,8 @@
     height: 13px;
     margin-bottom: 2px;
     margin-left: 0px;
-    /*border-bottom: 1px solid #333;*/
     box-sizing: border-box;
+    background-color: #222 !important;
 }
 
 .bar_chart .spark {

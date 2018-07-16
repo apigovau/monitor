@@ -20,6 +20,7 @@ class BarChartCreator {
             style = style + "<style>"
             for(styleDTO in styles){
                 style = style + ".${styleDTO.collection} {background-color: ${styleDTO.color} !important; color: ${styleDTO.color};}"
+                style = style + ".${styleDTO.collection} .spark {background-color: ${styleDTO.color} !important;}"
             }
             style = style + "</style>\n"
         }
@@ -57,7 +58,7 @@ class BarChartCreator {
             largestValue = max(largestValue,value.toString().toDouble())
         }
 
-        body = body + """      <dd class="sparkline">"""
+        body = body + """      <dd class="sparkline ${row.collection}">"""
         for (value in metrics[row.variable]!!) {
             var theValue = value
             if(row.style=="value" && value == null) theValue = 0
