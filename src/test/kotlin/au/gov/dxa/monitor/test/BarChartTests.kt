@@ -105,7 +105,7 @@ class BarChartTests {
         //metrics["Definition Catalogue Query PostgreSQL"] = listOf(0,10,20,30,40,50,60,70,80,90,null, null, null, null, null, null, null, null, null)
 
         val bcc = BarChartCreator()
-        val bc = bcc.create(config.widgets[0], metrics)
+        val bc = bcc.create(config.widgets[0], metrics, config.styles)
 
 
         val expected =
@@ -116,7 +116,7 @@ class BarChartTests {
       <dd class="percentage service_catalogue_repository" style="width:100%;"><span class="label">Service Catalogue Repository MongoDB</span></dd>
     </dl>
     <dl class="sparklines">
-      <dd class="sparkline"><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:10%"></div><div class="spark" style="height:20%"></div><div class="spark" style="height:30%"></div><div class="spark" style="height:40%"></div><div class="spark" style="height:50%"></div><div class="spark" style="height:60%"></div><div class="spark" style="height:70%"></div><div class="spark" style="height:80%"></div><div class="spark" style="height:90%"></div><div class="spark" style="height:100%"></div></dd>
+      <dd class="sparkline"><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="0" class="spark" style="height:0%"></div><div title="10" class="spark" style="height:10%"></div><div title="20" class="spark" style="height:20%"></div><div title="30" class="spark" style="height:30%"></div><div title="40" class="spark" style="height:40%"></div><div title="50" class="spark" style="height:50%"></div><div title="60" class="spark" style="height:60%"></div><div title="70" class="spark" style="height:70%"></div><div title="80" class="spark" style="height:80%"></div><div title="90" class="spark" style="height:90%"></div><div title="100" class="spark" style="height:100%"></div></dd>
     </dl>
   </div>
 """
@@ -134,7 +134,7 @@ class BarChartTests {
         metrics["serviceCatalogueRepositoryMongoDB"] = listOf(null, null, null, null, null, null, null, null, null, 0,100,200,300,400,500,600,700,800,900,1000)
 
         val bcc = BarChartCreator()
-        val bc = bcc.create(config.widgets[1], metrics)
+        val bc = bcc.create(config.widgets[1], metrics, config.styles)
 
 
         val expected =
@@ -145,7 +145,7 @@ class BarChartTests {
       <dd class="value service_catalogue_repository"><span class="text">1,000</span><span class="label">Service Catalogue Repository MongoDB</span></dd>
     </dl>
     <dl class="sparklines">
-      <dd class="sparkline"><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0.0%"></div><div class="spark" style="height:10.0%"></div><div class="spark" style="height:20.0%"></div><div class="spark" style="height:30.0%"></div><div class="spark" style="height:40.0%"></div><div class="spark" style="height:50.0%"></div><div class="spark" style="height:60.0%"></div><div class="spark" style="height:70.0%"></div><div class="spark" style="height:80.0%"></div><div class="spark" style="height:90.0%"></div><div class="spark" style="height:100.0%"></div></dd>
+      <dd class="sparkline"><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="null" class="spark" style="height:0%"></div><div title="0" class="spark" style="height:0.0%"></div><div title="100" class="spark" style="height:10.0%"></div><div title="200" class="spark" style="height:20.0%"></div><div title="300" class="spark" style="height:30.0%"></div><div title="400" class="spark" style="height:40.0%"></div><div title="500" class="spark" style="height:50.0%"></div><div title="600" class="spark" style="height:60.0%"></div><div title="700" class="spark" style="height:70.0%"></div><div title="800" class="spark" style="height:80.0%"></div><div title="900" class="spark" style="height:90.0%"></div><div title="1000" class="spark" style="height:100.0%"></div></dd>
     </dl>
   </div>
 """

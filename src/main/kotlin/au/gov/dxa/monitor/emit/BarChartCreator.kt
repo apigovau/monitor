@@ -1,6 +1,7 @@
 package au.gov.dxa.monitor.emit
 
 import au.gov.dxa.monitor.Application
+import au.gov.dxa.monitor.StyleDTO
 import au.gov.dxa.monitor.WidgetDTO
 import org.slf4j.LoggerFactory
 import java.text.NumberFormat
@@ -11,7 +12,18 @@ class BarChartCreator {
 
     private val logger = LoggerFactory.getLogger(Application::class.java)
 
-    fun create(widget:WidgetDTO, metrics:Map<String,List<Any?>>):String{
+    fun create(widget:WidgetDTO, metrics:Map<String, List<Any?>>, styles:List<StyleDTO>):String{
+
+        var style = ""
+
+        if(styles.size > 0){
+            style = style + "<style>"
+            for(styleDTO in styles){
+                style = style + ".${styleDTO.collection} {background-color: ${styleDTO.color} !important; color: ${styleDTO.color};}"
+            }
+            style = style + "</style>\n"
+        }
+
         var head = """
   <div class="bar_chart item" style="grid-column: ${widget.col}/ span ${widget.span};">
     <h3>${widget.title}</h3>
@@ -63,7 +75,7 @@ class BarChartCreator {
   </div>
 """
 
-        return head + body +  tail
+        return style + head + body +  tail
 
     }
 }

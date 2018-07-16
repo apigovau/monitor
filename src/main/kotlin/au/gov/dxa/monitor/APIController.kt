@@ -77,7 +77,7 @@ class APIController {
 
         for(widget in config.widgets){
             if(widget.bar_chart != null){
-                content = content + bcc.create(widget, metrics) + "\n"
+                content = content + bcc.create(widget, metrics, config.styles) + "\n"
             }
         }
 
