@@ -52,7 +52,7 @@ class BarChartCreator {
             if(row.style=="value" && value != null) theValue = value.toString().toDouble() / largestValue * 100
 
 
-            body = body + """<div class="spark" style="height:${theValue ?: 0}%"></div>"""
+            body = body + """<div title="${value}" class="spark" style="height:${theValue ?: 0}%"></div>"""
             //<div class="spark" style="height:100%"></div><div class="spark" style="height:90%"></div><div class="spark" style="height:80%"></div><div class="spark" style="height:70%"></div><div class="spark" style="height:60%"></div><div class="spark" style="height:50%"></div><div class="spark" style="height:40%"></div><div class="spark" style="height:30%"></div><div class="spark" style="height:20%"></div><div class="spark" style="height:10%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div></dd>
         }
         body = body + "</dd>\n"
