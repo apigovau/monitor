@@ -51,6 +51,11 @@ class BarChartCreator {
 
 
     for(row in widget.bar_chart!!) {
+        if(!metrics.containsKey(row.variable)){
+            logger.warn("No recorded metric for '${row.variable}'")
+            continue
+        }
+
         var largestValue = -1.0
 
         if(row.style=="value") for(value in metrics[row.variable]!!){
