@@ -1,12 +1,15 @@
 package au.gov.dxa.monitor.emit
 
+import au.gov.dxa.monitor.Application
 import au.gov.dxa.monitor.WidgetDTO
+import org.slf4j.LoggerFactory
 import java.text.NumberFormat
 import java.util.*
 import kotlin.math.max
 
 class BarChartCreator {
 
+    private val logger = LoggerFactory.getLogger(Application::class.java)
 
     fun create(widget:WidgetDTO, metrics:Map<String,List<Any?>>):String{
         var head = """
@@ -15,7 +18,13 @@ class BarChartCreator {
     <dl class="chart">
 """
         for(row in widget.bar_chart!!) {
-            val latestValue = metrics[row.variable]!!.last()
+
+            if(!metrics.containsKey(row.variable)){
+                logger.warn("No recorded metric for '${row.variable}'")
+                continue
+            }
+
+            val latestValue = metrics[row.variable]!!.lastOrNull() ?: 0
             if(row.style == "percent") {
                 head = head + """      <dd class="percentage ${row.collection}" style="width:${latestValue}%;"><span class="label">${row.label}</span></dd>""" + "\n"
             }
