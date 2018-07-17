@@ -107,3 +107,13 @@ body {
     background-color: #333333;
     color: #BBB;
 }
+
+.direction {
+    display: block;
+    float: right;
+    position: relative;
+    top: -2px;
+    left: -15px;
+    color: white;
+    font-size: small;
+}

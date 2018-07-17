@@ -28,16 +28,18 @@ class BarChartCreator {
         var head = """
   <div class="bar_chart item" style="grid-column: ${widget.col}/ span ${widget.span};">
     <h3>${widget.title}</h3>
+    <span class="direction">⟵ T</span>
     <dl class="chart">
 """
         for(row in widget.bar_chart!!) {
 
-            if(!metrics.containsKey(row.variable)){
+            var latestValue:Any? = 0
+            if(metrics.containsKey(row.variable)){
+                latestValue = metrics[row.variable]!!.lastOrNull() ?: 0
+            }else{
                 logger.warn("No recorded metric for '${row.variable}'")
-                continue
             }
 
-            val latestValue = metrics[row.variable]!!.lastOrNull() ?: 0
             if(row.style == "percent") {
                 head = head + """      <dd class="percentage ${row.collection}" style="width:${latestValue}%;"><span class="label">${row.label}</span></dd>""" + "\n"
             }
@@ -51,29 +53,29 @@ class BarChartCreator {
 
 
     for(row in widget.bar_chart!!) {
-        if(!metrics.containsKey(row.variable)){
-            logger.warn("No recorded metric for '${row.variable}'")
-            continue
+        if(metrics.containsKey(row.variable)) {
+            var largestValue = -1.0
+            if (row.style == "value") for (value in metrics[row.variable]!!) {
+                if (value == null) continue
+                largestValue = max(largestValue, value.toString().toDouble())
+            }
+
+            body = body + """      <dd class="sparkline ${row.collection}">"""
+            for (value in metrics[row.variable]!!) {
+                var theValue = value
+                if (row.style == "value" && value == null) theValue = 0
+                if (row.style == "value" && value != null) theValue = value.toString().toDouble() / largestValue * 100
+                body = body + """<div title="${value}" class="spark" style="height:${theValue ?: 0}%"></div>"""
+            }
+            body = body + "</dd>\n"
         }
-
-        var largestValue = -1.0
-
-        if(row.style=="value") for(value in metrics[row.variable]!!){
-            if(value == null) continue
-            largestValue = max(largestValue,value.toString().toDouble())
+        else{
+            body = body + """      <dd class="sparkline ${row.collection}">"""
+            for (i in 1..100) {
+                body = body + """<div title="No reading" class="spark" style="height:0%"></div>"""
+            }
+            body = body + "</dd>\n"
         }
-
-        body = body + """      <dd class="sparkline ${row.collection}">"""
-        for (value in metrics[row.variable]!!) {
-            var theValue = value
-            if(row.style=="value" && value == null) theValue = 0
-            if(row.style=="value" && value != null) theValue = value.toString().toDouble() / largestValue * 100
-
-
-            body = body + """<div title="${value}" class="spark" style="height:${theValue ?: 0}%"></div>"""
-            //<div class="spark" style="height:100%"></div><div class="spark" style="height:90%"></div><div class="spark" style="height:80%"></div><div class="spark" style="height:70%"></div><div class="spark" style="height:60%"></div><div class="spark" style="height:50%"></div><div class="spark" style="height:40%"></div><div class="spark" style="height:30%"></div><div class="spark" style="height:20%"></div><div class="spark" style="height:10%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div><div class="spark" style="height:0%"></div></dd>
-        }
-        body = body + "</dd>\n"
     }
 
 

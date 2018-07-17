@@ -112,6 +112,7 @@ class BarChartTests {
                 """
   <div class="bar_chart item" style="grid-column: 1/ span 6;">
     <h3>Storage</h3>
+    <span class="direction">⟵ T</span>
     <dl class="chart">
       <dd class="percentage service_catalogue_repository" style="width:100%;"><span class="label">Service Catalogue Repository MongoDB</span></dd>
     </dl>
@@ -141,6 +142,7 @@ class BarChartTests {
                 """
   <div class="bar_chart item" style="grid-column: 1/ span 6;">
     <h3>Values</h3>
+    <span class="direction">⟵ T</span>
     <dl class="chart">
       <dd class="value service_catalogue_repository"><span class="text">1,000</span><span class="label">Service Catalogue Repository MongoDB</span></dd>
     </dl>
