@@ -22,11 +22,11 @@
 }
 
 .bar_chart .label {
-    font-size: 10px;
+    font-size: 12px;
     display: flex;
     width: 400px;
     font-weight: 600;
-    line-height: 13px;
+    line-height: 23px;
     position: absolute;
     left: -418px;
     justify-content: flex-end;
@@ -35,13 +35,13 @@
 
 .bar_chart .value .label {
     position: relative;
-    top: -11px;
+    top: -18px;
 }
 
 .bar_chart .percentage {
     font-size: 0.8em;
     line-height: 1;
-    height: 13px;
+    height: 23px;
     background-color: #858585;
     margin-bottom: 2px;
     position: relative;
@@ -51,8 +51,7 @@
 .bar_chart .value {
     font-size: 0.8em;
     line-height: 1;
-    height: 13px;
-    /*background: #222 !important;*/
+    height: 23px;
     margin-bottom: 2px;
     position: relative;
     margin-left: 0px;
@@ -65,6 +64,7 @@
     left: -9px;
     top: 1px;
     font-weight: bold;
+    font-size: 18px;
 }
 
 .bar_chart h3 {
@@ -85,7 +85,7 @@
 
 .bar_chart .sparkline {
     font-size: 0.8em;
-    height: 13px;
+    height: 23px;
     margin-bottom: 2px;
     margin-left: 0px;
     box-sizing: border-box;
