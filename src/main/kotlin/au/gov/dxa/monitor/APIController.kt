@@ -81,7 +81,9 @@ class APIController {
             }
         }
 
-        return head + content + tail
+        var timestamp = """<div class="timestamp">${observations.last().time}</div>"""
+
+        return head + content + timestamp + tail
     }
 }
 
