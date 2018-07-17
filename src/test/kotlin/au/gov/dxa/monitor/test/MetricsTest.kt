@@ -27,6 +27,7 @@ class MetricsTest {
         for (i in 0..9) {
             val observation = Observation()
             observation.setTime()
+            observation.monitoringValues["i"] = i
             observation.calculatedVariables["e"] = Math.pow(2.0, i.toDouble()).toInt()
             observations.add(observation)
         }
@@ -37,6 +38,12 @@ class MetricsTest {
         Assert.assertEquals(10, metrics["e"]!!.size)
         Assert.assertEquals(1, metrics["e"]!!.first())
         Assert.assertEquals(512, metrics["e"]!!.last())
+
+
+        Assert.assertTrue(metrics.containsKey("i"))
+        Assert.assertEquals(10, metrics["i"]!!.size)
+        Assert.assertEquals(0, metrics["i"]!!.first())
+        Assert.assertEquals(9, metrics["i"]!!.last())
 
     }
 
