@@ -28,7 +28,7 @@ class BarChartCreator {
         var head = """
   <div class="bar_chart item" style="grid-column: ${widget.col}/ span ${widget.span};">
     <h3>${widget.title}</h3>
-    <span class="direction">⟵ T</span>
+    <span class="direction">⟵ t</span>
     <dl class="chart">
 """
         for(row in widget.bar_chart!!) {
