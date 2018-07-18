@@ -26,7 +26,7 @@ class APIController {
     private val logger = LoggerFactory.getLogger(Application::class.java)
 
     // 3600000 = 1 hour
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 3600000)
     fun observe(){
         logger.info("Doing observation")
         val config = configRepository.findAll().firstOrNull()
