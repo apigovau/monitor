@@ -70,7 +70,7 @@ class APIController {
         var content = ""
 
         val config = configRepository.findAll().first()
-        val observations = observationRepository.findAll(Sort(Sort.Direction.ASC, "time")).takeLast(20)
+        val observations = observationRepository.findAll(Sort(Sort.Direction.ASC, "time")).takeLast(100)
         val metrics = MetricConverter().convert(observations,100)
         val bcc = BarChartCreator()
 
