@@ -3,11 +3,14 @@ package au.gov.dxa.monitor
 import au.gov.dxa.monitor.emit.BarChartCreator
 import au.gov.dxa.monitor.emit.MetricConverter
 import au.gov.dxa.monitor.ingestion.Observation
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Sort
 import org.springframework.http.HttpStatus
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.web.bind.annotation.*
+
+
 
 @RestController
 class APIController {
@@ -20,9 +23,12 @@ class APIController {
 
     @Autowired lateinit var monitor: MongoMonitor
 
-    // 3600000000 = 1 hour
-    @Scheduled(fixedRate = 3600000000)
+    private val logger = LoggerFactory.getLogger(Application::class.java)
+
+    // 3600000 = 1 hour
+    @Scheduled(fixedRate = 60000)
     fun observe(){
+        logger.info("Doing observation")
         val config = configRepository.findAll().firstOrNull()
         if(config == null) return
         val observation = Observation()
