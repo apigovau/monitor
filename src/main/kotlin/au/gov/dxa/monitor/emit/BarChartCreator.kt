@@ -20,7 +20,7 @@ class BarChartCreator {
             style = style + "<style>"
             for(styleDTO in styles){
                 style = style + ".${styleDTO.collection} {background-color: ${styleDTO.color} !important; color: ${styleDTO.color};}"
-                style = style + ".${styleDTO.collection} .spark {background-color: ${styleDTO.color} !important;}"
+                style = style + ".${styleDTO.collection} .spark {border-top: 3px solid ${styleDTO.color} !important;}"
             }
             style = style + "</style>\n"
         }
