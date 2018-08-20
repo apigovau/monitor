@@ -56,15 +56,15 @@ class BarChartCreator {
         if(metrics.containsKey(row.variable)) {
             var largestValue = -1.0
             if (row.style == "value") for (value in metrics[row.variable]!!) {
-                if (value == null) continue
+                if (value == null || value.toString() == "") continue
                 largestValue = max(largestValue, value.toString().toDouble())
             }
 
             body = body + """      <dd class="sparkline ${row.collection}">"""
             for (value in metrics[row.variable]!!) {
                 var theValue = value
-                if (row.style == "value" && value == null) theValue = 0
-                if (row.style == "value" && value != null) theValue = value.toString().toDouble() / largestValue * 100
+                if (row.style == "value" && (value == null || value == "")) theValue = 0
+                if (row.style == "value" && value != null && value != "") theValue = value.toString().toDouble() / largestValue * 100
                 body = body + """<div title="${value}" class="spark" style="height:${theValue ?: 0}%"></div>"""
             }
             body = body + "</dd>\n"
